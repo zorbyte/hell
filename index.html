@@ -1,65 +1,63 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>I am so bored</title>
-</head>
-
-<body>
+  </head>
+  <body>
     <input id="slider" type="range" min="0.01" max="4" step="0.01" value="0.01" style="transform: translateY(4px)">
     <button id="please-help">Stop this hell</button>
     <button id="why-would-you">Don't die please</button>
     <div style="display:flex;justify-content:center;align-items:center;padding-top: 25%;">
-        <p id="spinning-crap"><b>Lorem ipsum, why does this exist. God bless this stupid piece of crap.</b></p>
+      <p id="spinning-crap"><b>Lorem ipsum, why does this exist. God bless this stupid piece of crap.</b></p>
     </div>
-</body>
-<style>
+  </body>
+  <style>
     @-moz-keyframes spin {
-        from {
-            -moz-transform: rotate(0deg);
-        }
+      from {
+        -moz-transform: rotate(0deg);
+      }
 
-        to {
-            -moz-transform: rotate(360deg);
-        }
+      to {
+        -moz-transform: rotate(360deg);
+      }
     }
 
     @-webkit-keyframes spin {
-        from {
-            -webkit-transform: rotate(0deg);
-        }
+      from {
+        -webkit-transform: rotate(0deg);
+      }
 
-        to {
-            -webkit-transform: rotate(360deg);
-        }
+      to {
+        -webkit-transform: rotate(360deg);
+      }
     }
 
     @keyframes spin {
-        from {
-            transform: rotate(0deg);
-        }
+      from {
+        transform: rotate(0deg);
+      }
 
-        to {
-            transform: rotate(360deg);
-        }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     #spinning-crap {
-        font-size: 30px;
-        font-style: italic;
+      font-size: 30px;
+      font-style: italic;
 
-        --slider-percent: 0.001s;
-        animation-duration: var(--slider-percent);
-        animation-delay: 0ms;
-        animation-name: spin;
-        animation-direction: reverse;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
+      --slider-percent: 0.001s;
+      animation-duration: var(--slider-percent);
+      animation-delay: 0ms;
+      animation-name: spin;
+      animation-direction: reverse;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
     }
-</style>
-<script>
+  </style>
+  <script>
     const range = document.getElementById("slider");
     const spinningText = document.getElementById("spinning-crap");
     const start = document.getElementById("why-would-you");
@@ -67,9 +65,9 @@
 
     let lastIntervalNum = setInterval(changeColours, 1);
     range.addEventListener("input", e => {
-        spinningText.style.setProperty("--slider-percent", `${e.target.value}s`);
-        clearInterval(lastIntervalNum);
-        lastIntervalNum = setInterval(changeColours, e.target.value * 100);
+      spinningText.style.setProperty("--slider-percent", `${e.target.value}s`);
+      clearInterval(lastIntervalNum);
+      lastIntervalNum = setInterval(changeColours, e.target.value * 100);
     });
 
     stop.addEventListener("click", stopHell);
@@ -78,19 +76,18 @@
     stopHell();
 
     function stopHell() {
-        spinningText.style.setProperty("--slider-percent", "0s");
-        clearInterval(lastIntervalNum);
+      spinningText.style.setProperty("--slider-percent", "0s");
+      clearInterval(lastIntervalNum);
     }
 
     function invertHex(hex) {
-        return (Number(`0x1${hex}`) ^ 0xFFFFFF).toString(16).substr(1).toUpperCase();
+      return (Number(`0x1${hex}`) ^ 0xFFFFFF).toString(16).substr(1).toUpperCase();
     }
 
     function changeColours() {
-        const generatedHex = Math.floor(Math.random() * 16777215).toString(16);
-        document.body.style.color = `#${invertHex(generatedHex)}`;
-        document.body.style.backgroundColor = `#${generatedHex}`;
+      const generatedHex = Math.floor(Math.random() * 16777215).toString(16);
+      document.body.style.color = `#${invertHex(generatedHex)}`;
+      document.body.style.backgroundColor = `#${generatedHex}`;
     }
-</script>
-
+  </script>
 </html>
